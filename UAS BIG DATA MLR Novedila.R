@@ -10,13 +10,14 @@ UAS_PCA_dan_MLR$Limit_Kredit_Mortgage <- (UAS_PCA_dan_MLR$Limit_Kredit_Mortgage 
 data.raw = UAS_PCA_dan_MLR
 dim(data.raw)
 length(data.raw$Product_holding)
-
 data.raw[data.raw==""] <- NA
 sapply(data.raw, function(x) sum(is.na(x)))
 colSums(is.na(data.raw))
 sapply(data.raw, function(x) length(unique(x)))
 UAS_PCA_dan_MLR$Product_holding <- as.factor(UAS_PCA_dan_MLR$Product_holding)
+set.seed(777)
 ind <- sample(2, nrow(UAS_PCA_dan_MLR), replace = TRUE, prob = c(0.7, 0.3))
+set.seed(777)
 training <- UAS_PCA_dan_MLR[ind==1,]
 testing <- UAS_PCA_dan_MLR[ind==2,]
 install.packages("nnet")

@@ -24,7 +24,7 @@ library(nnet)
 training$Product_holding <- relevel(training$Product_holding, ref="1")
 Nope <- multinom(Product_holding~., data = training)
 summary(Nope)
-z <- summary(bil)$coefficients/summary(Nope)$standard.errors
+z <- summary(Nope)$coefficients/summary(Nope)$standard.errors
 p <- (1 - pnorm(abs(z), 0, 1)) * 2
 p <- predict(Nope, training)
 head(p)
